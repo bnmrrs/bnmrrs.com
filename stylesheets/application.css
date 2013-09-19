@@ -40,9 +40,13 @@ a.labs:hover { border-bottom: 5px solid #F3373B; }
 a.demeure:hover { border-bottom: 5px solid #008C99; }
 a.dood:hover { border-bottom: 5px solid #1B28E0; }
 
-.stuff a {
+.links a {
   font-weight: 700;
   border-bottom: 5px solid #fff;
+  position: relative;
+}
+.links a:hover {
+  -webkit-transition: bottom 3s;
 }
 
 #contents {
@@ -51,6 +55,16 @@ a.dood:hover { border-bottom: 5px solid #1B28E0; }
   margin-bottom: 90px;
   padding-left: 40px;
   max-width: 650px;
+}
+
+.talks #contents {
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+
+.talks .deck {
+  width: 450px;
+  margin-left: 40px;
 }
 
 #contents p {
@@ -131,6 +145,45 @@ div#colour {
   100% { opacity: 1; }
 }
 @keyframes fade-in {
+  0% {  opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.slide-up {
+  -webkit-animation-fill-mode: both;
+     -moz-animation-fill-mode: both;
+      -ms-animation-fill-mode: both;
+       -o-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-animation-duration: 1.5s;
+     -moz-animation-duration: 1.5s;
+      -ms-animation-duration: 1.5s;
+       -o-animation-duration: 1.5s;
+          animation-duration: 1.5s;
+  -webkit-animation-delay: .3s;
+     -moz-animation-delay: .3s;
+      -ms-animation-delay: .3s;
+       -o-animation-delay: .3s;
+          animation-delay: .3s;
+  -webkit-animation-name: slide-up;
+     -moz-animation-name: slide-up;
+       -o-animation-name: slide-up;
+          animation-name: slide-up;
+}
+
+@-webkit-keyframes slide-up {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes slide-up {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-o-keyframes slide-up {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes slide-up {
   0% {  opacity: 0; }
   100% { opacity: 1; }
 }
