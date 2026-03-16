@@ -1,45 +1,329 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <link href="stylesheets/application.css" rel="stylesheet" type="text/css" />
-  <meta name="Description" content="Ben Morris. Engineer. Entrepreneur. Boltmade. Demeure. Dood." />
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ben Morris</title>
+  <meta name="description" content="Engineering leader. Toronto.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #F6F3EE;
+      --ink: #1a1a18;
+      --ink-2: #5c5a54;
+      --ink-3: #9b9890;
+      --green: #0E6B5E;
+      --green-soft: rgba(14, 107, 94, 0.07);
+      --rule: rgba(26, 26, 24, 0.1);
+      --rule-light: rgba(26, 26, 24, 0.06);
+      --display: 'Fraunces', Georgia, serif;
+      --body: 'Outfit', -apple-system, sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    ::selection { background: var(--green); color: #fff; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--body);
+      color: var(--ink);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Accent bar */
+    body::before {
+      content: '';
+      display: block;
+      height: 3px;
+      background: var(--green);
+    }
+
+    .page {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 0 2.5rem 8rem;
+    }
+
+    /* Nav */
+    header {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 1.5rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .name {
+      font-family: var(--display);
+      font-size: 1.125rem;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+
+    .email {
+      font-size: 0.8125rem;
+      font-weight: 400;
+      color: var(--ink-3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .email:hover { color: var(--green); }
+
+    /* Hero */
+    .hero {
+      padding: 8rem 0 5rem;
+    }
+
+    .hero h1 {
+      font-family: var(--display);
+      font-size: clamp(2.5rem, 5.5vw, 3.5rem);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      max-width: 16ch;
+    }
+
+    .hero h1 .l { display: block; overflow: hidden; }
+    .hero h1 .l span {
+      display: block;
+      transform: translateY(110%);
+      animation: up 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .hero h1 .l:nth-child(2) span { animation-delay: 0.06s; }
+    @keyframes up { to { transform: translateY(0); } }
+
+    .hero-intro {
+      margin-top: 2rem;
+      font-size: 1.0625rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--ink-2);
+      max-width: 48ch;
+      opacity: 0;
+      animation: fade 0.6s ease 0.4s forwards;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(0.5rem); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Sections */
+    .s {
+      padding: 4rem 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .s-tag {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 2.25rem;
+    }
+
+    /* Record items */
+    .record-item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 0 2rem;
+      padding: 1.25rem 0;
+      border-top: 1px solid var(--rule-light);
+      align-items: baseline;
+    }
+
+    .record-item:last-child {
+      border-bottom: 1px solid var(--rule-light);
+    }
+
+    .record-co {
+      font-family: var(--display);
+      font-size: 1.0625rem;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+
+    .record-detail {
+      font-size: 0.9375rem;
+      font-weight: 300;
+      color: var(--ink-2);
+      line-height: 1.6;
+    }
+
+    /* Now section */
+    .now-text {
+      font-size: 1.0625rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--ink-2);
+      max-width: 48ch;
+      padding-left: 1.25rem;
+      border-left: 2px solid var(--green);
+    }
+
+    /* Links list */
+    .links-list {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .links-list a {
+      font-size: 0.9375rem;
+      font-weight: 400;
+      color: var(--ink-3);
+      text-decoration: none;
+      padding-bottom: 0.1em;
+      border-bottom: 1px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .links-list a:hover {
+      color: var(--green);
+      border-color: var(--green);
+    }
+
+    /* Reveals */
+    .r {
+      opacity: 0;
+      transform: translateY(1rem);
+      transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .r.v { opacity: 1; transform: translateY(0); }
+
+    /* Footer */
+    footer {
+      padding: 3rem 0 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .foot-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .foot-id {
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: var(--ink-3);
+    }
+
+    .foot-id a {
+      color: var(--ink-3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .foot-id a:hover { color: var(--green); }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      header { padding: 1.25rem 1.5rem; }
+      .page { padding: 0 1.5rem 5rem; }
+      .hero { padding: 5rem 0 3.5rem; }
+      .s { padding: 3rem 0; }
+      .record-item {
+        grid-template-columns: 1fr;
+        gap: 0.2rem;
+      }
+      .links-list {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+    }
+
+    /* Print */
+    @media print {
+      body::before { display: none; }
+      .r { opacity: 1 !important; transform: none !important; }
+      header { padding-top: 0.5rem; }
+      .hero { padding: 2rem 0; }
+      .s { padding: 1.5rem 0; }
+    }
+  </style>
 </head>
-<body class="fade-in">
-  <div id="contents">
-    <h1><a href="/">Ben Morris<a></h1>
-    <p class="links">
-      <a href="http://github.com/bnmrrs" class="engineer">Engineer.</a>
-      <a href="http://ca.linkedin.com/in/bnmrrs" class="entrepreneur">Entrepreneur.</a>
-      <a href="http://boltmade.com" class="labs">Boltmade</a>
-      <a href="http://www.facebook.com/bnmrrs" class="dood">Dood.</a>
-    </p>
-    <p class="about">
-    </p>
-  </div>
+<body>
 
-  <div class="contact">
-    <p>
-      Say hello: <a href="mailto:ben@bnmrrs.com">ben@bnmrrs.com</a>. <br/>
-      You should follow me on Twitter: <a href="http://twitter.com/bnmrrs">@bnmrrs</a>.
-    </p>
-  </div>
+  <header>
+    <span class="name">Ben Morris</span>
+    <a href="mailto:ben@bnmrrs.com" class="email">ben@bnmrrs.com</a>
+  </header>
 
-  <div id="colour">
+  <div class="page">
+
+    <!-- Hero -->
+    <section class="hero">
+      <h1>
+        <span class="l"><span>Building teams</span></span>
+        <span class="l"><span>that build things.</span></span>
+      </h1>
+      <p class="hero-intro">Engineering leader in Toronto. I&rsquo;ve spent my career building software teams from scratch and figuring out what makes them work. Co-founded a company, scaled an engineering org from 3 to 30, spent 4.5 years at Shopify. Currently working with founders scaling their first engineering teams.</p>
+    </section>
+
+    <!-- Background -->
+    <section class="s r">
+      <div class="s-tag">Background</div>
+      <div class="record-item">
+        <span class="record-co">Stonecrop</span>
+        <span class="record-detail">Personal studio and family office. Building software: MomentumOS, ReadSpeed, Don&rsquo;t Lose Your Ship.</span>
+      </div>
+      <div class="record-item">
+        <span class="record-co">Float</span>
+        <span class="record-detail">First engineering manager and leader. Scaled from 3 to 30 engineers.</span>
+      </div>
+      <div class="record-item">
+        <span class="record-co">Shopify</span>
+        <span class="record-detail">Arrived via acquisition. Built and led a large engineering organization behind Shopify Plus.</span>
+      </div>
+      <div class="record-item">
+        <span class="record-co">Boltmade</span>
+        <span class="record-detail">Co-founded a design and engineering consultancy. Acquired by Shopify in 2016.</span>
+      </div>
+    </section>
+
+    <!-- Now -->
+    <section class="s r">
+      <div class="s-tag">Now</div>
+      <p class="now-text">I work with founders who are scaling their first engineering teams. Process, recruiting, team structure, technical strategy. Most of my work is with companies growing from 5 to 30 engineers &mdash; the stage where the informal systems that built the MVP start breaking.</p>
+    </section>
+
+    <!-- Elsewhere -->
+    <section class="s r">
+      <div class="s-tag">Elsewhere</div>
+      <ul class="links-list">
+        <li><a href="https://linkedin.com/in/bnmrrs">LinkedIn</a></li>
+        <li><a href="https://github.com/bnmrrs">GitHub</a></li>
+        <li><a href="https://twitter.com/bnmrrs">Twitter</a></li>
+        <li><a href="https://uncertaintybook.ca/en-us">Embracing Uncertainty</a></li>
+      </ul>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="foot-row">
+        <span class="foot-id">Toronto &middot; <a href="mailto:ben@bnmrrs.com">ben@bnmrrs.com</a></span>
+      </div>
+    </footer>
+
   </div>
 
   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-13224732-1', 'bnmrrs.com');
-    ga('send', 'pageview');
-
+    const o = new IntersectionObserver((e) => {
+      e.forEach(i => { if (i.isIntersecting) { i.target.classList.add('v'); o.unobserve(i.target); } });
+    }, { threshold: 0.15, rootMargin: '0px 0px -20px 0px' });
+    document.querySelectorAll('.r').forEach(el => o.observe(el));
   </script>
+
 </body>
 </html>
