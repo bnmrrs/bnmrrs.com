@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Engineering Leadership — SalesAsk</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,300;1,7..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --bg-aside: #F7F8F7;
+      --ink: #1a1d1c;
+      --ink-2: #4a4f4d;
+      --ink-3: #7a807d;
+      --ink-4: #a8ada9;
+      --accent: #1a6b5a;
+      --accent-light: #eaf3f0;
+      --rule: #e2e5e3;
+      --serif: 'Literata', Georgia, serif;
+      --mono: 'JetBrains Mono', 'SF Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    ::selection { background: var(--accent); color: white; }
+    html { font-size: 16px; }
+
+    body {
+      font-family: var(--serif);
+      color: var(--ink);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.75;
+    }
+
+    .page {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 4rem 2.5rem 5rem;
+    }
+
+    /* Header */
+    .header {
+      padding: 5rem 0 3.5rem;
+      border-bottom: 3px double var(--ink);
+      margin-bottom: 3.5rem;
+    }
+
+    .header-label {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.75rem;
+    }
+
+    .header h1 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.375rem;
+    }
+
+    .header-sub {
+      font-size: 1.1875rem;
+      font-weight: 300;
+      color: var(--ink-2);
+      font-style: italic;
+    }
+
+    .header-meta {
+      display: flex;
+      gap: 2.5rem;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--ink-3);
+      margin-top: 2rem;
+    }
+
+    /* Sections */
+    .section {
+      padding: 2.75rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .section:last-of-type { border-bottom: none; }
+
+    .section-num {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.25rem;
+    }
+
+    h2 {
+      font-size: 1.375rem;
+      font-weight: 600;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.25rem;
+    }
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 0.9375rem;
+      font-weight: 400;
+      line-height: 1.8;
+      color: var(--ink-2);
+      margin-bottom: 1rem;
+      max-width: 62ch;
+    }
+
+    p:last-child { margin-bottom: 0; }
+    strong { font-weight: 600; color: var(--ink); }
+
+    /* About box — moved up */
+    .about {
+      padding: 1.5rem 1.75rem;
+      background: var(--bg-aside);
+      border-radius: 6px;
+      border: 1px solid var(--rule);
+      margin-top: 0.5rem;
+    }
+
+    .about p {
+      font-size: 0.9375rem;
+      line-height: 1.75;
+      margin-bottom: 0;
+    }
+
+    /* Scope list */
+    .scope-list {
+      list-style: none;
+      margin: 1.25rem 0;
+    }
+
+    .scope-list li {
+      padding: 0.625rem 0 0.625rem 1.5rem;
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      color: var(--ink-2);
+      position: relative;
+    }
+
+    .scope-list li:last-child { border-bottom: none; }
+
+    .scope-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 1rem;
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    .scope-list li strong { color: var(--ink); }
+
+    /* Terms table */
+    .terms {
+      margin: 1.5rem 0;
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .terms-row {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .terms-row:last-child { border-bottom: none; }
+
+    .terms-label {
+      font-family: var(--mono);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--ink-3);
+      padding: 0.75rem 1.25rem;
+      background: var(--bg-aside);
+      display: flex;
+      align-items: center;
+    }
+
+    .terms-value {
+      font-size: 0.9375rem;
+      color: var(--ink);
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .terms-value.highlight {
+      font-weight: 600;
+      font-size: 1.0625rem;
+    }
+
+    /* Comparison */
+    .compare {
+      margin: 2rem 0 0.5rem;
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .compare-row {
+      display: grid;
+      grid-template-columns: 200px 1fr 1fr;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .compare-row:last-child { border-bottom: none; }
+
+    .compare-label {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--ink-3);
+      padding: 0.625rem 1.25rem;
+      background: var(--bg-aside);
+      display: flex;
+      align-items: center;
+    }
+
+    .compare-head {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      padding: 0.625rem 1.25rem;
+      background: var(--bg-aside);
+      display: flex;
+      align-items: center;
+    }
+
+    .compare-head.active {
+      color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    .compare-val {
+      font-size: 0.875rem;
+      color: var(--ink-2);
+      padding: 0.625rem 1.25rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .compare-val.win {
+      color: var(--accent);
+      font-weight: 500;
+      background: var(--accent-light);
+    }
+
+    /* Timeline */
+    .timeline { margin: 1.5rem 0; }
+
+    .tl-row {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 1.5rem;
+      padding: 1.125rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .tl-row:last-child { border-bottom: none; }
+
+    .tl-period {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--accent);
+      padding-top: 0.15rem;
+    }
+
+    .tl-content h4 {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .tl-content p {
+      font-size: 0.875rem;
+      line-height: 1.7;
+      margin-bottom: 0;
+    }
+
+    /* Footer */
+    .foot {
+      margin-top: 3.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--rule);
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--ink-4);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .foot a {
+      color: var(--ink-3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .foot a:hover { color: var(--accent); }
+
+    /* Gate */
+    .gate {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .gate-box { text-align: center; }
+
+    .gate-label {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 1.5rem;
+    }
+
+    #gate-input {
+      font-family: var(--mono);
+      font-size: 0.875rem;
+      padding: 0.625rem 1rem;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      outline: none;
+      width: 220px;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+
+    #gate-input:focus { border-color: var(--accent); }
+
+    #gate-btn {
+      display: block;
+      margin: 1rem auto 0;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.04em;
+      color: var(--ink-3);
+      background: none;
+      border: 1px solid var(--rule);
+      padding: 0.5rem 1.5rem;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    #gate-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* Print */
+    @media print {
+      .page { padding: 2rem 0; max-width: none; }
+      .section { break-inside: avoid; }
+      .header { padding: 2rem 0 2rem; }
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .page { padding: 2rem 1.25rem 3rem; }
+      .header { padding: 3rem 0 2.5rem; }
+      .header h1 { font-size: 1.75rem; }
+      .header-meta { flex-direction: column; gap: 0.25rem; }
+      .terms-row { grid-template-columns: 1fr; }
+      .terms-label { padding: 0.5rem 1rem 0.125rem; font-size: 0.6875rem; }
+      .terms-value { padding: 0.125rem 1rem 0.625rem; }
+      .compare-row { grid-template-columns: 1fr; }
+      .compare-label { display: none; }
+      .tl-row { grid-template-columns: 1fr; gap: 0.25rem; }
+      .foot { flex-direction: column; gap: 0.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="gate" id="gate">
+  <div class="gate-box">
+    <div class="gate-label">This document is private</div>
+    <input type="password" id="gate-input" placeholder="Enter access code" autocomplete="off" autofocus>
+    <button id="gate-btn" onclick="checkCode()">Open</button>
+  </div>
+</div>
+
+<div class="page" id="page" style="display:none;">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-label">Engagement Summary</div>
+    <h1>Engineering Leadership for SalesAsk</h1>
+    <div class="header-sub">Senior engineering leadership, starting next week</div>
+    <div class="header-meta">
+      <span>Ben Morris</span>
+      <span>March 2026</span>
+    </div>
+  </div>
+
+  <!-- 01 About Ben — credibility first -->
+  <section class="section">
+    <div class="section-num">01</div>
+    <h2>Background</h2>
+    <div class="about">
+      <p>First Head of Engineering at Float &mdash; joined as employee #7, built the engineering team from 3 to 30, shipped major products, and helped the company raise its Series&nbsp;A and prepare the B. Co-founded Boltmade, a design and engineering consultancy acquired by Shopify in 2016. Built and led a large engineering organization behind Shopify Plus. Hired 100+ engineers across these roles.</p>
+    </div>
+  </section>
+
+  <!-- 02 The Engagement -->
+  <section class="section">
+    <div class="section-num">02</div>
+    <h2>The Engagement</h2>
+    <p>SalesAsk has strong product-market fit, a capable engineering team, and fast growth. The next phase &mdash; scaling the team from 3 to 10, building engineering process, and preparing for Series&nbsp;A &mdash; requires senior engineering leadership.</p>
+    <p>This engagement puts that leadership in place immediately. No 3&ndash;6 month search, no equity commitment, no recruiting risk. I start within a week of agreement. If it&rsquo;s not working after 30 days, you walk away.</p>
+  </section>
+
+  <!-- 03 What You Get -->
+  <section class="section">
+    <div class="section-num">03</div>
+    <h2>What You Get</h2>
+    <ul class="scope-list">
+      <li><strong>A hiring pipeline that works</strong> &mdash; job descriptions, sourcing, screening, and closing the first 2&ndash;3 engineering hires using my network</li>
+      <li><strong>Engineering process that scales</strong> &mdash; sprint cadence, code review, incident response, deployment. The structure that lets a 3-person team become a 10-person team without breaking</li>
+      <li><strong>Distributed team coordination</strong> &mdash; Toronto + Poland operating as one team with clear communication, timezone management, and accountability</li>
+      <li><strong>A Series A-ready engineering story</strong> &mdash; roadmap, team plan, technical architecture. The section of the deck that makes investors confident in the engineering org</li>
+      <li><strong>Visibility into engineering</strong> &mdash; weekly demos, clear timelines, metrics. You'll know what's shipping and when</li>
+      <li><strong>An honest assessment at every stage</strong> &mdash; what&rsquo;s working, what&rsquo;s not, and when the team is ready for full-time leadership</li>
+    </ul>
+  </section>
+
+  <!-- 04 Weekly Cadence -->
+  <section class="section">
+    <div class="section-num">04</div>
+    <h2>Weekly Cadence</h2>
+    <p>Embedded with your team every week. Not advisory &mdash; operating.</p>
+    <ul class="scope-list">
+      <li><strong>Monday</strong> &mdash; planning sync with the engineering team. What&rsquo;s shipping this week, what&rsquo;s blocked</li>
+      <li><strong>Midweek</strong> &mdash; 1:1 with every engineer. Where problems surface before they become fires</li>
+      <li><strong>Friday</strong> &mdash; demo to you. Working software, every week, no exceptions</li>
+      <li><strong>Friday PM</strong> &mdash; written update. What shipped, what&rsquo;s next, any flags. You never have to wonder what&rsquo;s happening in engineering</li>
+    </ul>
+  </section>
+
+  <!-- 05 The First 90 Days -->
+  <section class="section">
+    <div class="section-num">05</div>
+    <h2>The First 90 Days</h2>
+    <div class="timeline">
+      <div class="tl-row">
+        <div class="tl-period">Week 1</div>
+        <div class="tl-content">
+          <h4>Start immediately</h4>
+          <p>1:1s with every engineer. Access to codebase, tools, and communication channels. Begin assessment of team, process, and architecture.</p>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-period">Weeks 2&ndash;4</div>
+        <div class="tl-content">
+          <h4>Assessment &amp; quick wins</h4>
+          <p>Set up incident response. Establish weekly demo cadence &mdash; working software shown every Friday. Assess the Poland team setup. Deliver a written report: what's working, what's not, and the plan forward.</p>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-period">Weeks 5&ndash;8</div>
+        <div class="tl-content">
+          <h4>Process &amp; hiring</h4>
+          <p>CI/CD and testing infrastructure in place. Hiring pipeline active &mdash; job descriptions out, sourcing started, first candidates in screening. Sprint cadence running: plan Monday, demo Friday. Code review on every PR.</p>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-period">Weeks 9&ndash;12</div>
+        <div class="tl-content">
+          <h4>Scale &amp; stabilize</h4>
+          <p>First hire closing or closed. Team shipping weekly with visibility and predictability. Engineering metrics dashboard live. Series A deck has a credible engineering section. Honest assessment: is fractional still right, or is it time to recruit full-time leadership?</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 Terms -->
+  <section class="section">
+    <div class="section-num">06</div>
+    <h2>Terms</h2>
+    <div class="terms">
+      <div class="terms-row">
+        <div class="terms-label">Monthly retainer</div>
+        <div class="terms-value highlight">$20,000</div>
+      </div>
+      <div class="terms-row">
+        <div class="terms-label">Cadence</div>
+        <div class="terms-value">Monday planning, weekly 1:1s, Friday demo + written update</div>
+      </div>
+      <div class="terms-row">
+        <div class="terms-label">Term</div>
+        <div class="terms-value">Month-to-month</div>
+      </div>
+      <div class="terms-row">
+        <div class="terms-label">Notice</div>
+        <div class="terms-value">30 days</div>
+      </div>
+      <div class="terms-row">
+        <div class="terms-label">Expected duration</div>
+        <div class="terms-value">6&ndash;12 months</div>
+      </div>
+      <div class="terms-row">
+        <div class="terms-label">Start</div>
+        <div class="terms-value">Within 1 week of agreement</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div class="foot">
+    <span>Ben Morris &middot; <a href="mailto:ben@bnmrrs.com">ben@bnmrrs.com</a></span>
+    <span>March 2026</span>
+  </div>
+
+</div>
+
+<script>
+  const CODE = 'salesask2026';
+  function checkCode() {
+    if (document.getElementById('gate-input').value === CODE) {
+      document.getElementById('gate').style.display = 'none';
+      document.getElementById('page').style.display = 'block';
+    } else {
+      document.getElementById('gate-input').value = '';
+      document.getElementById('gate-input').style.borderColor = '#9b3b3b';
+    }
+  }
+  document.getElementById('gate-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkCode();
+  });
+</script>
+
+</body>
+</html>
